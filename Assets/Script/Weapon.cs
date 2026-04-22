@@ -4,6 +4,7 @@ public class Weapon : MonoBehaviour
 {
 
     [SerializeField] ParticleSystem muzzleFlash;
+    [SerializeField] LayerMask hitLayerMask;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,7 +26,7 @@ public class Weapon : MonoBehaviour
     {
         muzzleFlash.Play();
         RaycastHit hit;
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, hitLayerMask, QueryTriggerInteraction.Ignore))
         {
             Instantiate(weaponSO.hitVFXPrefab, hit.point, Quaternion.identity);
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * Mathf.Infinity, Color.red);
