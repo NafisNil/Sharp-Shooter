@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int startingHealth = 100;
+    [SerializeField] GameObject robotExplosionVFXPrefab;
     private int currentHealth;
  
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,10 +23,10 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         // Handle enemy death here (e.g., play animation, destroy object)
-       
+        Instantiate(robotExplosionVFXPrefab, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 
