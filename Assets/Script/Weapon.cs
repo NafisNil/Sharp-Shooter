@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour
         {
             Instantiate(weaponSO.hitVFXPrefab, hit.point, Quaternion.identity);
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * Mathf.Infinity, Color.red);
-            EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = hit.collider.GetComponentInParent<EnemyHealth>();
             enemyHealth?.TakeDamage(weaponSO.damage);
         }
     }
